@@ -52,16 +52,18 @@ export const HomeScreen = () => {
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.productContainer}>
-      <Image style={styles.productImage} source={{ uri: item.image }} />
-      <TouchableOpacity style={styles.addToCartButton} onPress={() => addToCart(item)}>
-          <Image style={styles.addToCart} source={require('../../assets/add_circle.png')}/>
+    <TouchableOpacity style={styles.productContainer} onPress={() => navigation.navigate('ProductDetails', { product: item })}>
+      <View style={styles.pictureContainer}>
+        <Image style={styles.productImage} source={{ uri: item.image }} />
+        <TouchableOpacity style={styles.addToCartButton} onPress={() => addToCart(item)}>
+          <Image style={styles.addToCart} source={require('../../assets/add_circle.png')} />
         </TouchableOpacity>
+      </View>
       <View style={styles.productDetails}>
         <Text style={styles.productTitle}>{item.title}</Text>
         <Text style={styles.productPrice}>{`$${item.price}`}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   if (isLoading) {
@@ -74,31 +76,6 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerImages}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Image source={require('../../assets/Menu.png')} />
-        </TouchableOpacity>
-        <Image source={require('../../assets/Logo.png')} />
-        <View style={styles.innerImages}>
-          <Image source={require('../../assets/Search.png')} />
-          <TouchableOpacity onPress={navigateToCart}>
-            <Image style={styles.shoppingBagImage} source={require('../../assets/shoppingBag.png')} />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <View style={styles.secondHeader}>
-        <Text style={styles.secondHeaderText}>OUR STORY</Text>
-        <View style={styles.secondInnerImage}>
-          <View style={styles.background}>
-            <Image source={require('../../assets/Listview.png')} />
-          </View>
-          <View style={styles.background}>
-            <Image style={styles.filterImage} source={require('../../assets/Filter.png')} />
-          </View>
-        </View>
-      </View>
-
       <FlatList
         data={products}
         renderItem={renderItem}
@@ -114,72 +91,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 40,
-  },
-  headerImages: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 30,
-  },
-  innerImages: {
-    flexDirection: 'row',
-  },
-  shoppingBagImage: {
-    marginLeft: 15,
-  },
-  secondHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 25,
-    paddingHorizontal: 17,
-  },
-  secondInnerImage: {
-    flexDirection: 'row',
-  },
-  background: {
-    height: 40,
-    width: 40,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f9f9f9',
-  },
-  secondHeaderText: {
-    letterSpacing: 6,
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: 10,
   },
   catalogue: {
     paddingHorizontal: 5,
   },
   productContainer: {
-    width:170,
-    margin:10,
-    paddingHorizontal:5
+    width: 170,
+    height: 200,
+    margin: 10,
+    paddingHorizontal: 5,
+  },
+  pictureContainer: {
+    width: 170,
+    height: 140,
   },
   productImage: {
-    width: 80,
-    height: 80,
+    width: 170,
+    height: 140,
     resizeMode: 'contain',
     borderRadius: 8,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   productDetails: {
     flex: 1,
-    marginLeft: 12,
   },
   productTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 12,
+    flexWrap: 'wrap',
   },
   productPrice: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#888',
     marginTop: 4,
   },
   addToCartButton: {
-   left:100,
+    position: 'absolute',
+    right: 0,
+    bottom: 1
   },
 });
 

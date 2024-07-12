@@ -47,7 +47,6 @@ export const CheckoutPageScreen = () => {
                 </View>
                 <View style={styles.imageWriting}>
                     <Text style={styles.imageLabel}>{item.title}</Text>
-                    <Text style={styles.imageDescription}>{item.description}</Text>
                     <Text style={styles.imagePrice}>{`$${item.price}`}</Text>
 
                     <TouchableOpacity onPress={() => removeFromCart(item)}>
@@ -60,13 +59,6 @@ export const CheckoutPageScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerImages}>
-                <Image source={require('../../assets/Logo.png')} />
-                <View style={styles.innerImages}>
-                    <Image source={require('../../assets/Search.png')} />
-                </View>
-            </View>
-
             <View style={styles.secondHeader}>
                 <Text style={styles.secondHeaderText}>CHECKOUT</Text>
                 <View style={styles.secondInnerImage}></View>
@@ -98,7 +90,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        marginTop: 40,
     },
     headerImages: {
         flexDirection: 'row',
@@ -138,12 +129,11 @@ const styles = StyleSheet.create({
         marginLeft: 90
     },
     catalogue: {
-        paddingHorizontal: 15,
+        // paddingHorizontal: 15,
     },
     catalogueRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: 10,
     },
     itemContainer: {
         flexDirection: 'row',
@@ -161,13 +151,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
         fontSize: 16,
         fontWeight: '500',
-        letterSpacing: 2
-    },
-    imageDescription: {
-        textAlign: 'left',
-        marginTop: 4,
-        fontSize: 14,
-        color: '#888',
+        letterSpacing: 1
     },
     imagePrice: {
         textAlign: 'left',
@@ -191,7 +175,7 @@ const styles = StyleSheet.create({
         color: '#D45C07'
     },
     text: {
-        letterSpacing: 2,
+        letterSpacing: 1,
         fontSize:20
     },
     checkoutButtonView: {
@@ -211,3 +195,5 @@ const styles = StyleSheet.create({
         marginLeft: 90
     }
 });
+
+export default CheckoutPageScreen;
